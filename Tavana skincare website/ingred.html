@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skincare Products</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
+
+        :root {
+            --primary-color: #dbdceb;
+            --secondary-color: #fcfcfc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--primary-color);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        header {
+            padding: 1rem;
+            display: flex;
+            justify-content: flex-end;
+            background-color: var(--secondary-color);
+        }
+
+        .search {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            border-radius: 50px;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            color: #0e0d0d;
+        }
+
+        .search::placeholder {
+            color: #7378c5;
+        }
+
+        .search:focus {
+            outline: none;
+            background-color: var(--primary-color);
+        }
+
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px;
+        }
+
+        .product {
+            width: 300px;
+            height: 350px;
+            margin: 10px;
+            background-color: var(--secondary-color);
+            box-shadow: 0 4px 5px rgba(137, 224, 166, 0.2);
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .product img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            color: #4b4949;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .product-info h3 {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .product-info span {
+            background-color: var(--primary-color);
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        .overview {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 1rem;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 40px; /* Leaves space for product name & rating */
+    transform: translateY(100%);
+    transition: transform 0.3s ease-in-out;
+    font-size: 0.9rem;
+    color: #222;
+    text-align: center;
+    overflow-y: auto; /* Enables scrolling for long text */
+    max-height: calc(100% - 40px); /* Ensures it doesn’t overlap the title */
+}
+
+/* Keeps product name & rating visible */
+.product-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 10; /* Ensures it stays above the description */
+}
+
+/* Scrollbar Styling */
+.overview::-webkit-scrollbar {
+    width: 6px;
+}
+
+.overview::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.overview::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+.overview::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Hover Effect */
+.product:hover .overview {
+    transform: translateY(0);
+}
+
+    </style>
+</head>
+<body>
+  <nav>
+    <header>
+        <h1 style="margin-right: auto;color: green;  padding-left: 1rem;">TAVANA</h1>
+        <a href="index.html" style="text-decoration: none; color: blue; padding: 0.5rem 1rem;">Home</a>
+        <form id="form">
+            <input type="text" id="search" class="search" placeholder="Search products...">
+        </form>
+    
+    </header>
+</nav>
+
+    <main id="main"></main>
+
+    <script>
+        const products = [
+            { name: "Tavana Avacado Face Balm", img: "./assets/images/avacado.jpeg", rating: 9.0, description: "Indulge in the luxury of nature's finest whispers. The balm caresses your skin, like jojoba oil, a nurturing protector, enveloping you in its rich antioxidants. Passion plum oil dances softly on your complexion, fading the marks of time, while blue tansy offers a tranquil, grounding presence, infusing your skin with timeless beauty. weave a delicate barrier, locking in hydration, leaving your skin feeling pampered, renewed, and glowing with effortless radiance. Every touch is a moment of pure luxury, turning your daily ritual into an indulgent escape." },
+            { name: "Tavana Helichrysum Pore-Minimizing Toner", img: "./assets/images/tonerr.jpeg", rating: 8.5, description: "Allow your skin to be cradled in the luxurious caress of Lotus. This exceptional toner, enriched with the rare essence of Helichrysum , gently works to refine pores and smooth texture, unveiling a balanced, luminous complexion Each application is a soft, indulgent touch, as the nourishing Calendula essence glides over your skin, leaving it velvety and hydrated. The delicate richness of Licorice root transforms your skin, offering an unmatched radiance and smoothness that speaks of elegance." },
+            { name: "Tavana Sence The Essence of centilla serum", img: "./assets/images/serum.jpg", rating: 7.8, description: "Sence the Essence Centilla Radiance Serum delivers transformative results with its expertly crafted formula. This serum harnesses the healing properties of Centella Asiatica, combined with the enriching benefits of Hyaluronic acid and white tea enhance skin resilience soothes and heals, creating a radiant and rejuvenated complexion. Enveloping your skin in a delicate aroma, this serum offers a sensorial experience that transcends mere skincare.Sence the Essence is the key to timeless radiance and ageless beauty." },
+            { name: "Tavana Replenish with Hibiscus Wrinkle Corrector & Anti-Aging Serum", img: "./assets/images/hibiscus.jpg", rating: 8.7, description: "Unveil the beauty of timeless skin with Replenish with Hibiscus, a luxurious anti-aging serum designed to restore, rejuvenate, and redefine. At its heart lies Hibiscus Extract, revered as nature’s Botox which visibly lifts and firms for a youthful, wrinkle-free appearance. Bakuchiol, a gentle yet potent retinol alternative, partners with Rosehip Seed Oil to boost collagen, refine texture, and promote radiant elasticity.Infused with antioxidant-rich Pomegranate, this serum shields your skin from daily stressors while L-Theanine soothes and restores balance. The elegant formulation deeply hydrates and nourishes, revealing plump, glowing skin with every use.Embrace a transformative skincare ritual where the synergy of nature and innovation comes alive—because beauty deserves to flourish at every age." },
+            { name: "Tavana SPF 50 Sunscreen", img: "./assets/images/d1.jpg", rating: 9.2, description: "Protects from UV rays." },
+            { name: "Tavana Aloe Vera Gel", img: "./assets/images/d2.jpg", rating: 8.4, description: "Soothes and hydrates skin." },
+            { name: "Tavana Collagen Booster", img: "./assets/images/d3clenser.jpg", rating: 9.1, description: "Improves skin elasticity." },
+            { name: "Tavana Rose Water Mist", img: "./assets/images/d4.jpeg", rating: 7.9, description: "Refreshing facial mist." },
+            { name: "Tavana Tea Tree Face Wash", img: "./assets/images/d5.jpeg", rating: 8.6, description: "Fights acne and oiliness." },
+            { name: "Tavana Shea Butter Moisturizer", img: "./assets/images/d6.jpeg", rating: 8.9, description: "Intensely moisturizes skin." },
+            { name: "Tavana Charcoal Face Mask", img: "./assets/images/d7.jpeg", rating: 8.3, description: "Detoxifies and unclogs pores." },
+            { name: "Tavana Under Eye Cream", img: "./assets/images/d9.jpg", rating: 7.7, description: "Reduces dark circles." },
+            { name: "Tavana Lip Balm", img: "./assets/images/d10.jpg", rating: 8.0, description: "Hydrates and protects lips." },
+            { name: "Tavana Retinol Serum", img: "./assets/images/d11.jpg", rating: 9.5, description: "Reduces wrinkles and fine lines." },
+            { name: "Tavana Coconut Oil", img: "./assets/images/d12.jpeg", rating: 9.0, description: "Nourishes and softens skin." },
+            { name: "Tavana Clay Face Mask", img: "./assets/images/d3clenser.jpg", rating: 8.2, description: "Deep cleanses and purifies skin." },
+            { name: "Tavana Avacado Face Balm", img: "./assets/images/avacado.jpeg", rating: 9.0, description: "Indulge in the luxury of nature's finest whispers. The balm caresses your skin, like jojoba oil, a nurturing protector, enveloping you in its rich antioxidants. Passion plum oil dances softly on your complexion, fading the marks of time, while blue tansy offers a tranquil, grounding presence, infusing your skin with timeless beauty. weave a delicate barrier, locking in hydration, leaving your skin feeling pampered, renewed, and glowing with effortless radiance. Every touch is a moment of pure luxury, turning your daily ritual into an indulgent escape." },
+            { name: "Tavana Helichrysum Pore-Minimizing Toner", img: "./assets/images/tonerr.jpeg", rating: 8.5, description: "Allow your skin to be cradled in the luxurious caress of Lotus. This exceptional toner, enriched with the rare essence of Helichrysum , gently works to refine pores and smooth texture, unveiling a balanced, luminous complexion Each application is a soft, indulgent touch, as the nourishing Calendula essence glides over your skin, leaving it velvety and hydrated. The delicate richness of Licorice root transforms your skin, offering an unmatched radiance and smoothness that speaks of elegance." },
+            { name: "Tavana Sence The Essence of centilla serum", img: "./assets/images/serum.jpg", rating: 7.8, description: "Sence the Essence Centilla Radiance Serum delivers transformative results with its expertly crafted formula. This serum harnesses the healing properties of Centella Asiatica, combined with the enriching benefits of Hyaluronic acid and white tea enhance skin resilience soothes and heals, creating a radiant and rejuvenated complexion. Enveloping your skin in a delicate aroma, this serum offers a sensorial experience that transcends mere skincare.Sence the Essence is the key to timeless radiance and ageless beauty." },
+            { name: "Tavana Replenish with Hibiscus Wrinkle Corrector & Anti-Aging Serum", img: "./assets/images/hibiscus.jpg", rating: 8.7, description: "Unveil the beauty of timeless skin with Replenish with Hibiscus, a luxurious anti-aging serum designed to restore, rejuvenate, and redefine. At its heart lies Hibiscus Extract, revered as nature’s Botox which visibly lifts and firms for a youthful, wrinkle-free appearance. Bakuchiol, a gentle yet potent retinol alternative, partners with Rosehip Seed Oil to boost collagen, refine texture, and promote radiant elasticity.Infused with antioxidant-rich Pomegranate, this serum shields your skin from daily stressors while L-Theanine soothes and restores balance. The elegant formulation deeply hydrates and nourishes, revealing plump, glowing skin with every use.Embrace a transformative skincare ritual where the synergy of nature and innovation comes alive—because beauty deserves to flourish at every age." },
+            { name: "Tavana SPF 50 Sunscreen", img: "./assets/images/d1.jpg", rating: 9.2, description: "Protects from UV rays." },
+            { name: "Tavana Aloe Vera Gel", img: "./assets/images/d2.jpg", rating: 8.4, description: "Soothes and hydrates skin." },
+            { name: "Tavana Collagen Booster", img: "./assets/images/d3clenser.jpg", rating: 9.1, description: "Improves skin elasticity." },
+            { name: "Tavana Rose Water Mist", img: "./assets/images/d4.jpeg", rating: 7.9, description: "Refreshing facial mist." },
+            { name: "Tavana Tea Tree Face Wash", img: "./assets/images/d5.jpeg", rating: 8.6, description: "Fights acne and oiliness." },
+            { name: "Tavana Shea Butter Moisturizer", img: "./assets/images/d6.jpeg", rating: 8.9, description: "Intensely moisturizes skin." },
+            { name: "Tavana Charcoal Face Mask", img: "./assets/images/d7.jpeg", rating: 8.3, description: "Detoxifies and unclogs pores." },
+            { name: "Tavana Under Eye Cream", img: "./assets/images/d9.jpg", rating: 7.7, description: "Reduces dark circles." },
+            { name: "Tavana Lip Balm", img: "./assets/images/d10.jpg", rating: 8.0, description: "Hydrates and protects lips." },
+            { name: "Tavana Retinol Serum", img: "./assets/images/d11.jpg", rating: 9.5, description: "Reduces wrinkles and fine lines." },
+            { name: "Tavana Coconut Oil", img: "./assets/images/d12.jpeg", rating: 9.0, description: "Nourishes and softens skin." },
+            { name: "Tavana Clay Face Mask", img: "./assets/images/d3clenser.jpg", rating: 8.2, description: "Deep cleanses and purifies skin." }
+        ];
+
+        const main = document.getElementById('main');
+        const form = document.getElementById('form');
+        const search = document.getElementById('search');
+
+        function showProducts(productsList) {
+        main.innerHTML = '';
+
+        productsList.forEach((product) => {
+        const { name, img, rating, description } = product;
+
+        const productEl = document.createElement('div');
+        productEl.classList.add('product');
+
+        productEl.innerHTML = `
+            <img src="${img}" alt="${name}">
+            <div class="product-info">
+                <h3>${name}</h3>
+                <span>${rating}</span>
+            </div>
+            <div class="overview" style="display: none;">
+                <p>${description}</p>
+            </div>
+        `;
+
+        productEl.addEventListener('click', () => {
+            const overview = productEl.querySelector('.overview');
+            overview.style.display = overview.style.display === 'none' ? 'block' : 'none';
+        });
+
+        main.appendChild(productEl);
+    });
+}
+
+    form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const searchTerm = search.value.toLowerCase().trim();
+
+    if (searchTerm === '') {
+        showProducts(products); // Show all products when search is empty
+        return;
+    }
+
+    const filteredProducts = products.filter(product =>
+        product.name.toLowerCase().includes(searchTerm)
+    );
+
+    if (filteredProducts.length === 0) {
+        showProducts(products); // If no match, return to homepage
+    } else {
+        showProducts(filteredProducts);
+    }
+});
+
+
+    showProducts(products);
+    </script>
+
+</body>
+</html>

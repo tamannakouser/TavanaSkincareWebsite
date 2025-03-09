@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tavana</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Muli', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f8f8;
+        }
+
+        .navbar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgb(228, 230, 228);
+            color: green;
+            padding: 15px 30px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .container {
+            display: flex;
+            width: 95vw;
+            margin-top: 80px;
+        }
+
+        .panel {
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            border-radius: 50px;
+            color: #fff;
+            cursor: pointer;
+            flex: 0.5;
+            margin: 10px;
+            position: relative;
+            transition: all 700ms ease-in;
+        }
+
+        .panel.active {
+            flex: 5;
+        }
+
+        .content-heading {
+            font-size: 28px;
+            text-align: center;
+            margin-top: 40px;
+            font-weight: bold;
+        }
+
+        .content-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 80%;
+            margin: 40px auto;
+            gap: 20px;
+            padding-bottom: 30px;
+        }
+
+        .content-section img {
+            width: 40%;
+            max-width: 400px;
+            border-radius: 10px;
+        }
+
+        .content-text {
+            width: 50%;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .content-section:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        /* Footer Styling */
+.footer {
+    background-color: #f3f3f3;
+    color: rgb(63, 62, 62);;
+    padding: 40px 0;
+    font-size: 16px;
+}
+
+.footer .container {
+    max-width: 1500px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer-list {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-list-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.footer-list-text {
+    font-size: 14px;
+    color:rgb(63, 62, 62);;
+    margin-bottom: 8px;
+}
+
+.footer-list-text a {
+    color: #f8b400;
+    text-decoration: none;
+}
+
+.footer-link {
+    color:rgb(63, 62, 62);;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 8px;
+    transition: color 0.3s;
+}
+
+.footer-link:hover {
+    color: #f8b400;
+}
+
+.newsletter-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.newsletter-text {
+    font-size: 14px;
+    color: #4b4a4a;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.email-field {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 70%;
+}
+
+.btn-primary {
+    background-color: #f8b400;
+    color: #111;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #ffcc00;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgb(63, 62, 62);;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.copyright {
+    font-size: 14px;
+    color: #ccc;
+}
+
+.social-list {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.social-link {
+    color: rgb(63, 62, 62);
+    font-size: 20px;
+    transition: color 0.3s;
+}
+
+.social-link:hover {
+    color: #f8b400;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-top {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    .email-field {
+        width: 100%;
+    }
+
+    .wrapper {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>Tavana Skincare</h1>
+        <a href="index.html">Home</a>
+    </div>
+
+    <div class="container">
+        <div class="panel active" style="background-image: url('./assets/images/bgi2.png')">
+            
+        </div>
+        <div class="panel" style="background-image: url('./assets/images/bgi4.png')">
+            
+        </div>
+        <div class="panel" style="background-image: url('./assets/images/bgi3.png')">
+           
+        </div>
+        <div class="panel" style="background-image: url('./assets/images/bgi1.png')">
+           
+        </div>
+        <div class="panel" style="background-image: url('./assets/images/bgi2.png')">
+            
+        </div>
+    </div>
+
+    <h2 class="content-heading">Explore Tavana Skincare</h2>
+
+    <div class="content-section">
+        <img src="./assets/images/hibiscus.jpg" alt="First Image">
+        <p class="content-text"> 
+            <strong>Replenish with Hibiscus Wrinkle Corrector & Anti-Aging Serum.</strong> 
+            Unveil the beauty of timeless skin with Replenish with Hibiscus, a luxurious anti-aging serum designed to restore, rejuvenate, and redefine. At its heart lies Hibiscus Extract, revered as nature’s "Botox," which visibly lifts and firms for a youthful, wrinkle-free appearance. Bakuchiol, a gentle yet potent retinol alternative, partners with Rosehip Seed Oil to boost collagen, refine texture, and promote radiant elasticity.
+            Infused with antioxidant-rich Pomegranate, this serum shields your skin from daily stressors while L-Theanine soothes and restores balance. The elegant formulation deeply hydrates and nourishes, revealing plump, glowing skin with every use.
+            Embrace a transformative skincare ritual where the synergy of nature and innovation comes alive—because beauty deserves to flourish at every age.
+           lti-Dimensional Care: A holistic approach combining anti-aging efficacy, stress-calming neurocosmetic actives Ylang Ylang,Bramhi,Tephrosia purpurea and plant-powered hydration to transform your skincare routine into a rejuvenating experience.
+            
+        </p>
+        
+    </div>
+    <div class="content-section">
+        <img src="./assets/images/tonerr.jpeg" alt="Second Image">
+        <p class="content-text"> 
+            <strong>Replenish with Hibiscus Wrinkle Corrector & Anti-Aging Serum.</strong> 
+            Each application is a soft, indulgent touch, as the nourishing Calendula essence glides over your skin, leaving it velvety and hydrated. The delicate richness of Licorice root transforms your skin, offering an unmatched radiance and smoothness that speaks of elegance.
+            "Love for Sacred Lotus "—A Touch of Luxury, A World of Care
+            <br> 
+            1.	Deep Hydration and Soothing:
+Formulated with Rose Hydrosol, White Lotus Extract, and Aloe Vera Juice to deliver intense hydration and calm the skin
+            <br>
+            2.	Antioxidant Protection:
+Contains Organic Green tea Extract,Zinc to protect the skin from environmental stressors and free radicals, promoting overall skin health
+            <br>
+            3.	Pore Refining and Balancing:
+Witch Hazel Hydrosol and Apple extract tighten pores and regulate sebum production, resulting in a clear and balanced complexion and gentle exfoliation
+(Organic apple extract gently exfoliates the skin, refining texture and removing dead skin cells for a smoother complexion)
+            <br>
+            4.	Neurocosmetic Benefits:
+Helichrysum and Sacred Lotus provides adaptogenic properties that reduce stress-related skin issues, enhance resilience, and improve overall skin health
+
+            
+        </p>
+    </div>
+
+    <div class="content-section">
+        <img src="./assets/images/serum.jpg" alt="Third Image">
+        <p class="content-text"> 
+            <strong>Replenish with Hibiscus Wrinkle Corrector & Anti-Aging Serum.</strong> 
+            Sence the Essence Centilla Radiance Serum delivers transformative results with its expertly crafted formula.  Enveloping your skin in a delicate aroma, this serum offers a sensorial experience that transcends mere skincare. 
+Sence the Essence is the key to timeless radiance and ageless beauty.
+          <br>
+          Here are the five key points for Sence the Essence Centilla Radiance Serum: <br>
+1.	Advanced Hydration and Soothing: Infused with Centella Asiatica,Cucumber and organic Honey, this serum provides intense hydration, restoring skin firmness and elasticity<br>
+2.	Skin Resilience: The inclusion of Hyaluronic acid and Saffron extract strengthens the skin’s barrier, enhancing its resilience to environmental stressors.<br>
+3.	Neurocosmetic Benefits: Featuring adaptogenic properties from organic herbal extracts Ashwagandha,Passion fruit this serum offers neurocosmetic benefits, helping to reduce skin stress and promote a calm, radiant complexion.
+    </div>
+    <div class="content-section">
+        <img src="./assets/images/avacado.jpeg" alt="Third Image">
+        <p class="content-text"> 
+            <strong>Replenish with Hibiscus Wrinkle Corrector & Anti-Aging Serum.</strong> 
+            Indulge in the luxury of nature's finest whispers. The balm caresses your skin, like jojoba oil, a nurturing protector, enveloping you in its rich antioxidants. Psasion plum oil dances softly on your complexion, fading the marks of time, while blue tansy offers a tranquil, grounding presence, infusing your skin with timeless beauty.
+          <br>
+          Key Features of the Face Balm <br>
+          1.Neurocosmetic Benefits:
+          Blue tansy extract,passion fruit oil helps reduce stress-related skin damage, promoting a calm and balanced complexion.
+          <br>
+          2.Brightening and Revitalizing Sunflower deliver a radiant glow to the skin.
+        <br>
+        3.	Holistic Aroma -Enhanced with calming essential oils like lavender this balm provides a soothing sensory experience
+          <br>
+          Ideal For:
+          •	Dry, sensitive, or stressed skin in need of intense hydration and repair.
+          •	Individuals seeking anti-aging benefits and neurocosmetic advantages.
+          •	Those who prefer eco-conscious luxury skincare for holistic care.
+          This revised version incorporates the calming aroma for a more holistic and luxurious experience.
+          
+          
+         </div>
+    
+     <!-- Hover Effect Cards -->
+<div class="container"> 
+    <div class="box">
+        <div class="thumb">
+            <img src="./assets/images/d6.jpeg" alt="" />
+        </div>
+        <div class="details"> 
+            <div class="content"> 
+                <i class="./assets/images/d10.jpg" aria-hidden="true"></i>
+                <h3>Tavana</h3>
+                <a href="#">Buy Now</a>
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="thumb">
+            <img src="./assets/images/i6.jpeg" alt="" />
+        </div>
+        <div class="details"> 
+            <div class="content"> 
+                <i class="fa fa-globe" aria-hidden="true"></i>
+                <h3>Tavana</h3>
+                <a href="#">Buy Now</a>
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="thumb">
+            <img src="./assets/images/d9.jpg" alt="" />
+        </div>
+        <div class="details"> 
+            <div class="content"> 
+                <i class="fa fa-glass" aria-hidden="true"></i>
+                <h3>Tavana</h3>
+                <a href="#">Buy Now</a>
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="thumb">
+            <img src="./assets/images/avacado.jpeg" alt="" />
+        </div>
+        <div class="details"> 
+            <div class="content"> 
+                <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                <h3>Tavana</h3>
+                <a href="#">Buy Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Hover Card CSS -->
+<style>
+    .container {
+        position: relative;
+        width: 1000px;
+        height: 500px;
+        display: flex;
+        margin: 50px auto;
+        justify-content: center;
+    }
+    .container .box {
+        position: relative;
+        width: 250px;
+        height: 300px;
+        background: #ccc;
+        transition: 0.5s;
+        margin: 5px; /* Ensure spacing */
+    }
+    
+    .container .box:hover {
+        transform: scale(1.1);
+        z-index: 1;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 1);
+    }
+    .container .box .thumb {
+        position: absolute;
+        width: 100%;
+        height: 250px;
+        overflow: hidden;
+    }
+    .container .box:nth-child(odd) .thumb {
+        bottom: 0;
+        left: 0;
+    }
+    .container .box .thumb img {
+        width: 100%;
+    }
+    .container .box .details .content a {
+        display: inline-block;
+        padding: 8px 20px;
+        color: #fff;
+        border: 2px solid #fff;
+        text-decoration: none;
+        transition: 0.5s;
+        border-radius: 20px;
+        transform: scale(1); /* Change from scale(0) to scale(1) */
+        opacity: 1; /* Ensure visibility */
+        visibility: visible; /* Ensure visibility */
+    }
+    
+    
+    
+    .container .box:nth-child(even) .details {
+        bottom: 0;
+        left: 0;
+    }
+    .container .box:nth-child(1) .details { background: #8553cb; }
+    .container .box:nth-child(2) .details { background: #fe8f01; }
+    .container .box:nth-child(3) .details { background: #79d400; }
+    .container .box:nth-child(4) .details { background: #ff3b34; }
+    .container .box .details .content {
+        position: absolute;
+        top: calc(50% + 16px);
+        transform: translateY(-50%);
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+        text-align: center;
+        transition: 0.5s;
+    }
+    .container .box:hover .details .content { top: calc(50%); }
+    .container .box .details .content .fa {
+        font-size: 80px;
+        color: #fff;
+    }
+    .container .box .details .content h4 {
+        margin: 0;
+        padding: 10px 0;
+        color: #fff;
+    }
+    .container .box .details .content a {
+        display: inline-block;
+        padding: 5px 20px;
+        color: #fff;
+        border: 2px solid #fff;
+        text-decoration: none;
+        transition: 0.5s;
+        border-radius: 20px;
+        transform: scale(0);
+    }
+    .container .box:hover .details .content a {
+        transform: scale(1);
+    }
+    .container .box .details .content a:hover {
+        background: #fff;
+        color: #262626;
+    }
+    @media (max-width: 1000px) {
+        .container {
+            width: 100%;
+            height: auto;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .container .box { height: 250px; }
+        .container .box .thumb { display: none; }
+    }
+    @media (max-width: 768px) {
+        .container { display: initial; }
+        .container .box {
+            width: 50%;
+            height: 250px;
+            float: left;
+        }
+    }
+    @media (max-width: 480px) {
+        .container {
+            top: 0;
+            left: 0;
+            transform: translate(0);
+        }
+        .container .box {
+            width: 100%;
+            height: 250px;
+            float: none;
+        }
+    }
+    
+</style>
+<footer class="footer" data-section>
+    <div class="container">
+
+        <div class="footer-top">
+
+            <ul class="footer-list">
+                <li>
+                    <p class="footer-list-title">Company</p>
+                </li>
+                <li>
+                    <p class="footer-list-text">
+                        Find a location nearest you. See <a href="#" class="link">Our Stores</a>
+                    </p>
+                </li>
+                <li>
+                    <p class="footer-list-text bold">+91 1234567890</p>
+                </li>
+                <li>
+                    <p class="footer-list-text">tavana@gmail.com</p>
+                    <p class="footer-list-text">developed by Tamanna Kouser</p>
+                </li>
+            </ul>
+
+            <ul class="footer-list">
+                <li>
+                    <p class="footer-list-title">Useful links</p>
+                </li>
+                <li><a href="#" class="footer-link">New Products</a></li>
+                <li><a href="#" class="footer-link">Best Sellers</a></li>
+                <li><a href="#" class="footer-link">Bundle & Save</a></li>
+                <li><a href="#" class="footer-link">Online Gift Card</a></li>
+            </ul>
+
+            <ul class="footer-list">
+                <li>
+                    <p class="footer-list-title">Information</p>
+                </li>
+                <li><a href="#" class="footer-link">Start a Return</a></li>
+                <li><a href="#" class="footer-link">Contact Us</a></li>
+                <li><a href="#" class="footer-link">Shipping FAQ</a></li>
+                <li><a href="#" class="footer-link">Terms & Conditions</a></li>
+                <li><a href="#" class="footer-link">Privacy Policy</a></li>
+            </ul>
+
+            <div class="footer-list">
+                <p class="newsletter-title">Good emails.</p>
+                <p class="newsletter-text">
+                    Enter your email below to be the first to know about new collections and product launches.
+                </p>
+                <form action="" class="newsletter-form">
+                    <input type="email" name="email_address" placeholder="Enter your email address" required
+                        class="email-field">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <div class="wrapper">
+                <p class="copyright">
+                    &copy; 2025 Your Website. All Rights Reserved.
+                </p>
+                <ul class="social-list">
+                    <li><a href="#" class="social-link"><ion-icon name="logo-facebook"></ion-icon></a></li>
+                    <li><a href="#" class="social-link"><ion-icon name="logo-instagram"></ion-icon></a></li>
+                    <li><a href="#" class="social-link"><ion-icon name="logo-youtube"></ion-icon></a></li>
+                </ul>
+            </div>
+            <img src="./assets/images/pay.png" width="313" height="28" alt="available all payment method"
+                class="w-100">
+        </div>
+
+    </div>
+</footer>
+
+    <script>
+        const panels = document.querySelectorAll('.panel');
+
+        panels.forEach(panel => {
+            panel.addEventListener('click', () => {
+                removeActiveClasses();
+                panel.classList.add('active');
+            });
+        });
+
+        function removeActiveClasses() {
+            panels.forEach(panel => {
+                panel.classList.remove('active');
+            });
+        }
+    </script>
+</body>
+</html>
