@@ -19,7 +19,7 @@ Annimations , transitions and AI Generated pictures are added.
 
 🚀 How to Run the Project
 Clone the repository:
-git clone https://github.com/tamannakouser/tavana.git
+git clone https://github.com/tamannakouser/TavanaSkincareWebsite.git
 
 
 Navigate to the project folder:
