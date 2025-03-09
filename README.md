@@ -19,7 +19,7 @@ Annimations , transitions and AI Generated pictures are added.
 
 🚀 How to Run the Project
 Clone the repository:
-git clone https://github.com/your-username/tavana.git
+git clone https://github.com/tamannakouser/tavana.git
 
 
 Navigate to the project folder:
